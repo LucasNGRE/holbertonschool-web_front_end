@@ -44,7 +44,6 @@ a:active {
 
 .section {
     padding: var(--section-padding);
-
 }
 
 .section-header {
@@ -59,6 +58,10 @@ a:active {
 .section-footer {
     padding: var(--section-footer-padding);
     text-align: var(--section-footer-align);
+}
+
+.section-header {
+    text-align: var(--section-header-align);
 }
 
 .section-title {
@@ -111,11 +114,11 @@ a:active {
     --section-tagline-transform: uppercase;
 
     --section-title-margin: 0;
-    --section-title-color:var(--color-black);
-
+    --section-title-color: var(--color-black);
+    
     --section-padding: 5rem 0;
-    --section-header-padding: 0 0 3rem 0;
-    --section-body-padding: 0 0 3rem 0;
+    --section-header-padding: 0 0 3rem;
+    --section-body-padding: 0 0 3rem;
     --section-footer-padding: 3rem 0 0;
     --section-footer-align: center;
     --footer-padding: 5rem 0 1rem;
