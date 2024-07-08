@@ -18,15 +18,6 @@ body {
     line-height: var(--line-height-base);
 }
 
-.section-body {
-    padding: var(--section-body-padding);
-}
-
-.section-footer {
-    padding: var(--section-footer-padding);
-    text-align: var(--section-footer-align);
-}
-
 a:link {
     text-decoration: none;
 }
@@ -59,6 +50,15 @@ a:active {
 .section-header {
     text-align: var(--section-header-align);
     padding: var(--section-header-padding);
+}
+
+.section-body {
+    padding: var(--section-body-padding);
+}
+
+.section-footer {
+    padding: var(--section-footer-padding);
+    text-align: var(--section-footer-align);
 }
 
 .section-title {
