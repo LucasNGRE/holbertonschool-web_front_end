@@ -41,8 +41,8 @@ a {
     --font-size-small: 1.2rem;
     --font-size-medium: 1.6rem;
     --font-size-large: 1.8rem;
-    --font-size-xlarge: 2.3rem;
-    --font-size-xxlarge: 4.8rem;
+    --font-size-x-large: 2.3rem;
+    --font-size-xx-large: 4.8rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
