@@ -115,14 +115,14 @@ a:active {
 
     --section-title-margin: 0;
     --section-title-color: var(--color-black);
-    
+
     --section-padding: 5rem 0;
     --section-header-padding: 0 0 3rem;
     --section-body-padding: 0 0 3rem;
     --section-footer-padding: 3rem 0 0;
     --section-footer-align: center;
     --footer-padding: 5rem 0 1rem;
-
+    
     --nav-item-font-family: var(--font-family-title);
     --nav-item-font-weight: var(--font-weight-bold);
     --nav-item-font-size: var(--font-size-medium);
@@ -130,7 +130,6 @@ a:active {
     --nav-item-display: inline-block;
     --nav-item-margin: 0 0 3rem 0;
     --nav-item-link-hover: var(--color-primary);
-
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -153,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.nav .nav-items {
+.nav .nav-item {
     font-family: var(--nav-item-font-family);
     font-weight: var(--nav-item-font-weight);
     font-size: var(--nav-item-font-size);
