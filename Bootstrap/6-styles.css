@@ -1,4 +1,5 @@
 .btn-primary {
+	color: #ffffff;
 	background-color: #e0003c;
 	border-color: #e0003c;
 }
@@ -6,11 +7,13 @@
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
+	color: #ffffff;
 	background-color: #bc1340;
 	border-color: #bc1340;
 }
 
 .btn-outline-primary {
+	color: #ffffff;
 	color: #e0003c;
 	border-color: #e0003c;
 }
@@ -20,23 +23,25 @@ a.text-dark:focus,
 a.text-muted:hover,
 a.text-muted:focus {
 	color: #e0003c !important;
+	text-decoration: none;
 }
 
-.card,
-.card-header,
-.card-footer {
-	border-color: #e0003c;
-	border-radius: 1rem;
+.card {
+		border: solid 1px #e0003c;
+		border-radius: 1rem;
 }
 
-.card-header:first-child {
-	border-radius: 1rem 1rem 0 0;
-}
-
-.card-header,
-.card-footer {
+.card-header {
+	color: #ffffff;
 	background-color: #e0003c;
-	color: white;
+  }
+  
+.card-header:first-child {
+	border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
+  }
+
+.border-bottom {
+	border-bottom: 1px solid #e0003c !important;
 }
 
 .text-muted {
