@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+
+  <script>
+    const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+    // Vérifie le support de sessionStorage
+    function isSessionStorageSupported() {
+      try {
+        sessionStorage.setItem("__test", "test");
+        sessionStorage.removeItem("__test");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Récupère le panier depuis sessionStorage
+    function getCartFromStorage() {
+      const cartStr = sessionStorage.getItem("cart");
+      return cartStr ? JSON.parse(cartStr) : {};
+    }
+
+    // Ajoute un article au panier
+    function addItemToCart(item) {
+      const cart = getCartFromStorage();
+      cart[item] = (cart[item] || 0) + 1;
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    // Supprime un article du panier
+    function removeItemfromCart(item) {
+      const cart = getCartFromStorage();
+      if (cart[item]) {
+        delete cart[item];
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+    }
+
+    // Vide entièrement le panier
+    function clearCart() {
+      sessionStorage.clear();
+      displayCart();
+    }
+
+    // Crée la liste des produits disponibles
+    function createStore() {
+      const h2 = document.createElement("h2");
+      h2.textContent = "Available products:";
+      document.body.appendChild(h2);
+
+      const ul = document.createElement("ul");
+      availableItems.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.style.cursor = "pointer";
+        li.addEventListener("click", () => addItemToCart(item));
+        ul.appendChild(li);
+      });
+      document.body.appendChild(ul);
+    }
+
+    // Affiche le panier
+    function displayCart() {
+      // Supprime l'ancien affichage s’il existe
+      const oldH2 = document.getElementById("cart-title");
+      if (oldH2) oldH2.remove();
+      const oldDiv = document.getElementById("cart-div");
+      if (oldDiv) oldDiv.remove();
+
+      // Titre du panier
+      const h2 = document.createElement("h2");
+      h2.id = "cart-title";
+      h2.textContent = "Your cart:";
+      document.body.appendChild(h2);
+
+      // Conteneur du panier
+      const div = document.createElement("div");
+      div.id = "cart-div";
+      document.body.appendChild(div);
+
+      updateCart();
+    }
+
+    // Met à jour l'affichage du panier
+    function updateCart() {
+      const cart = getCartFromStorage();
+      const div = document.getElementById("cart-div");
+      const ul = document.createElement("ul");
+
+      // Bouton pour vider le panier
+      const clearLi = document.createElement("li");
+      clearLi.textContent = "Clear my cart";
+      clearLi.style.cursor = "pointer";
+      clearLi.style.fontWeight = "bold";
+      clearLi.addEventListener("click", clearCart);
+      ul.appendChild(clearLi);
+
+      const keys = Object.keys(cart);
+
+      if (keys.length === 0) {
+        const emptyLi = document.createElement("li");
+        emptyLi.textContent = "Your cart is empty";
+        ul.appendChild(emptyLi);
+      } else {
+        keys.forEach(item => {
+          const li = document.createElement("li");
+          li.innerHTML = `${item} x ${cart[item]} <span style="color: blue; cursor: pointer;">(remove)</span>`;
+          li.querySelector("span").addEventListener("click", () => removeItemfromCart(item));
+          ul.appendChild(li);
+        });
+      }
+
+      div.appendChild(ul);
+    }
+
+    // Lancement
+    if (!isSessionStorageSupported()) {
+      alert("Sorry, your browser does not support Web storage. Try again with a better one");
+    } else {
+      createStore();
+      displayCart();
+    }
+  </script>
+</body>
+</html>
