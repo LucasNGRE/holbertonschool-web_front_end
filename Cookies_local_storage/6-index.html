@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping Cart (Session)</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+
+  <script>
+    const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+    function isSessionStorageSupported() {
+      try {
+        sessionStorage.setItem("__test", "test");
+        sessionStorage.removeItem("__test");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function addItemToCart(item) {
+      sessionStorage.setItem(item, "true");
+    }
+
+    function createStore() {
+      const ul = document.createElement("ul");
+      document.body.appendChild(ul);
+
+      for (let item of availableItems) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.addEventListener("click", () => addItemToCart(item));
+        ul.appendChild(li);
+      }
+    }
+
+    function displayCart() {
+      const items = Object.keys(sessionStorage);
+      let count = 0;
+
+      for (let key of items) {
+        if (availableItems.includes(key)) {
+          count++;
+        }
+      }
+
+      if (count > 0) {
+        const p = document.createElement("p");
+        p.textContent = `You previously had ${count} item${count > 1 ? 's' : ''} in your cart`;
+        document.body.appendChild(p);
+      }
+    }
+
+    if (!isSessionStorageSupported()) {
+      alert("Sorry, your browser does not support Web storage. Try again with a better one");
+    } else {
+      createStore();
+      displayCart();
+    }
+  </script>
+</body>
+</html>
