@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+
+  <script>
+    // Tableau d’articles disponibles
+    const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+    // Vérification du support de localStorage
+    function isLocalStorageSupported() {
+      try {
+        localStorage.setItem("__test", "test");
+        localStorage.removeItem("__test");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Ajouter un article au panier (dans localStorage)
+    function addItemToCart(item) {
+      localStorage.setItem(item, "true");
+    }
+
+    // Créer la liste d’articles
+    function createStore() {
+      const ul = document.createElement("ul");
+      document.body.appendChild(ul);
+
+      for (let item of availableItems) {
+        const li = document.createElement("li");
+        li.textContent = item;
+        li.addEventListener("click", () => addItemToCart(item));
+        ul.appendChild(li);
+      }
+    }
+
+    // Afficher le nombre d’articles déjà ajoutés
+    function displayCart() {
+      const items = Object.keys(localStorage);
+      let count = 0;
+
+      for (let key of items) {
+        if (availableItems.includes(key)) {
+          count++;
+        }
+      }
+
+      if (count > 0) {
+        const p = document.createElement("p");
+        p.textContent = `You previously had ${count} item${count > 1 ? 's' : ''} in your cart`;
+        document.body.appendChild(p);
+      }
+    }
+
+    // Initialisation
+    if (!isLocalStorageSupported()) {
+      alert("Sorry, your browser does not support Web storage. Try again with a better one");
+    } else {
+      createStore();
+      displayCart();
+    }
+  </script>
+</body>
+</html>
