@@ -3,23 +3,33 @@ function setCookies() {
   const email = document.getElementById("email").value;
 
   const date = new Date();
-  date.setTime(date.getTime() + (10 * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000); // 10 days
   const expires = "expires=" + date.toUTCString();
 
   document.cookie = `firstname=${firstname}; ${expires}; path=/`;
   document.cookie = `email=${email}; ${expires}; path=/`;
 }
 
-function showCookies() {
+function getCookie(name) {
   const cookies = document.cookie.split("; ");
-  const myCookies = cookies.filter(cookie =>
-    cookie.startsWith("firstname=") || cookie.startsWith("email=")
-  );
+  for (let i = 0; i < cookies.length; i++) {
+    const [key, value] = cookies[i].split("=");
+    if (key === name) {
+      return value;
+    }
+  }
+  return "";
+}
+
+function showCookies() {
+  const firstname = getCookie("firstname");
+  const email = getCookie("email");
 
   const p = document.createElement("p");
-  p.innerHTML = `Cookies: ${myCookies.join("; ")}`;
+  p.textContent = `Email: ${email} - Firstname: ${firstname}`;
   document.body.appendChild(p);
 }
 
 window.setCookies = setCookies;
+window.getCookie = getCookie;
 window.showCookies = showCookies;
