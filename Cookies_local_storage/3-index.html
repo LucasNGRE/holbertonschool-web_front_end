@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Document</title>
+  <style>
+    #loginForm {
+      margin-top: 20px;
+    }
+    #logoutLink {
+      font-weight: normal;
+      font-style: italic;
+      margin-left: 10px;
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="pageTitle">Login to the website</h1>
+  
+  <div id="loginForm">
+    <input type="text" id="firstname" placeholder="Firstname" />
+    <input type="email" id="email" placeholder="Email" />
+    <button id="login" type="button" onclick="setCookies()">Log me in</button>
+  </div>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
